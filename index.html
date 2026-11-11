@@ -223,9 +223,9 @@
             <pre><code>podman run -d --name meshview \
   -p 8081:8081 \
   -v meshview-data:/data \
-  -v ./config.toml:/data/config.toml:ro \
+  -v ./config.toml:/etc/meshview/config.toml:ro \
   ghcr.io/meshview/meshview:latest</code></pre>
-            <p>The database and the configuration live in <code>/data</code>. <code>latest</code> is the newest release, and every version has a tag of its own, for <code>amd64</code> and <code>arm64</code>.</p>
+            <p>The database lives in <code>/data</code>, and the configuration, read only, in <code>/etc/meshview</code>. <code>latest</code> is the newest release, and every version has a tag of its own, for <code>amd64</code> and <code>arm64</code>.</p>
             <p>Feeling brave? <code>master</code> is rebuilt on every change: tomorrow's features today, with bugs guaranteed and no extra charge.</p>
           </div>
 
