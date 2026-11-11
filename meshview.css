@@ -1,0 +1,414 @@
+/* SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2026 Óscar García Amor <ogarcia@connectical.com>
+ *
+ * Meshview's page, made of Meshview's own pieces: the blue header bar, the
+ * cards with their 9px corners, the icons in a soft square, and the colours of
+ * both its themes, which follow the browser's. The values are copied from the
+ * interface's stylesheets rather than linked, as those are built into the
+ * server and this page is not served by it. */
+
+@font-face {
+  font-family: "Inter Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url(fonts/inter-latin-wght-normal.woff2) format("woff2-variations");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Inter Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url(fonts/inter-latin-ext-wght-normal.woff2) format("woff2-variations");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+:root {
+  color-scheme: light dark;
+
+  --mesh-primary: #245ea8;
+  --mesh-primary-dark: #19467f;
+  --mesh-brand: #245ea8;
+  --mesh-surface: #ffffff;
+  --mesh-text: #243247;
+  --mesh-soft: #eaf1fb;
+  --mesh-hover: #dce8f8;
+  --mesh-border: #dce4ef;
+  --mesh-page: #f5f8fc;
+  --mesh-muted: #566579;
+  --mesh-on-primary: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --mesh-primary: #8bbcff;
+    --mesh-primary-dark: #b6d5ff;
+    --mesh-brand: #193d69;
+    --mesh-surface: #182335;
+    --mesh-text: #e2eaf6;
+    --mesh-soft: #203653;
+    --mesh-hover: #29486c;
+    --mesh-border: #34465f;
+    --mesh-page: #101925;
+    --mesh-muted: #a9b6c9;
+    --mesh-on-primary: #101925;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--mesh-page);
+  color: var(--mesh-text);
+  font-family: "Inter Variable", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+a { color: var(--mesh-primary); text-decoration: none; }
+a:hover { color: var(--mesh-primary-dark); text-decoration: underline; }
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.875em;
+}
+
+p, figure { margin: 0; }
+
+/* Icons: Tabler's outlines, drawn in the colour of the text around them. */
+.ti {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+  background: currentColor;
+  mask: var(--icon) center / contain no-repeat;
+  vertical-align: -0.125em;
+}
+.ti-map-2 { --icon: url(icons/map-2.svg); }
+.ti-id { --icon: url(icons/id.svg); }
+.ti-route { --icon: url(icons/route.svg); }
+.ti-affiliate { --icon: url(icons/affiliate.svg); }
+.ti-chart-line { --icon: url(icons/chart-line.svg); }
+.ti-broadcast { --icon: url(icons/broadcast.svg); }
+.ti-router { --icon: url(icons/router.svg); }
+.ti-link { --icon: url(icons/link.svg); }
+.ti-download { --icon: url(icons/download.svg); }
+.ti-brand-github { --icon: url(icons/brand-github.svg); }
+.ti-arrow-bar-to-down { --icon: url(icons/arrow-bar-to-down.svg); }
+
+/* --- the header bar, as on every Meshview page --------------------------- */
+
+.mesh-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--mesh-brand);
+  color: white;
+  box-shadow: 0 2px 8px #193d6918;
+}
+
+.mesh-header-inner {
+  max-width: 1280px;
+  margin: auto;
+  padding: 0 20px;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.mesh-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 17px;
+  font-weight: 700;
+  color: white;
+  flex-shrink: 0;
+}
+
+.mesh-brand:hover { color: white; text-decoration: none; }
+.mesh-brand img { width: 28px; height: 28px; display: block; }
+
+.mesh-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.mesh-nav a {
+  color: #e6effb;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+.mesh-nav a:hover { color: white; background: #ffffff14; text-decoration: none; }
+.mesh-nav-external { margin-left: 4px; font-size: 12px; opacity: 0.75; }
+
+/* The other language, where the interface keeps its theme button. */
+.mesh-lang {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  height: 34px;
+  padding: 0 10px;
+  border: 1px solid #ffffff59;
+  border-radius: 7px;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.mesh-lang:hover { color: white; background: #ffffff14; text-decoration: none; }
+
+/* --- the content --------------------------------------------------------- */
+
+.mesh-content {
+  flex: 1 0 auto;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 16px 28px 40px;
+}
+
+.mesh-hero {
+  padding: 36px 0 28px;
+}
+
+.mesh-hero h1 {
+  margin: 0;
+  font-size: 34px;
+  font-weight: 650;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.mesh-hero .lead {
+  max-width: 52rem;
+  margin-top: 14px;
+  font-size: 18px;
+  line-height: 1.55;
+}
+
+.mesh-hero .note {
+  max-width: 52rem;
+  margin-top: 12px;
+  font-size: 14px;
+  color: var(--mesh-muted);
+}
+
+.mesh-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.mesh-button,
+.mesh-secondary-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.mesh-button {
+  background: var(--mesh-primary);
+  border: 1px solid var(--mesh-primary);
+  color: var(--mesh-on-primary);
+}
+
+.mesh-button:hover {
+  background: var(--mesh-primary-dark);
+  border-color: var(--mesh-primary-dark);
+  color: var(--mesh-on-primary);
+  text-decoration: none;
+}
+
+.mesh-secondary-button {
+  border: 1px solid var(--mesh-border);
+  background: var(--mesh-surface);
+  color: var(--mesh-text);
+}
+
+.mesh-secondary-button:hover {
+  background: var(--mesh-soft);
+  color: var(--mesh-text);
+  text-decoration: none;
+}
+
+/* A page heading, as the interface's data pages have. */
+.data-heading {
+  margin: 40px 0 14px;
+}
+
+.data-heading h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 650;
+}
+
+.data-heading p {
+  margin-top: 2px;
+  color: var(--mesh-muted);
+  font-size: 14px;
+}
+
+/* What Meshview does: the dashboard's metric cards, with words for numbers. */
+.mesh-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: 12px;
+}
+
+.mesh-feature {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 14px;
+  align-content: start;
+  padding: 16px 18px;
+  background: var(--mesh-surface);
+  border: 1px solid var(--mesh-border);
+  border-radius: 9px;
+  box-shadow: 0 2px 4px #24324704;
+}
+
+.mesh-feature-icon {
+  grid-row: 1 / span 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: var(--mesh-soft);
+  color: var(--mesh-primary);
+  font-size: 22px;
+}
+
+.mesh-feature h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.mesh-feature p {
+  margin-top: 4px;
+  font-size: 14px;
+  color: var(--mesh-muted);
+}
+
+/* A card with a title, as the statistics page's charts are. */
+.card-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 20px 20px;
+  background: var(--mesh-surface);
+  border: 1px solid var(--mesh-border);
+  border-radius: 9px;
+}
+
+.card-section + .card-section { margin-top: 12px; }
+
+.card-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--mesh-border);
+}
+
+.card-head .ti { color: var(--mesh-primary); font-size: 18px; }
+
+.section-header {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.card-section img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--mesh-border);
+  border-radius: 6px;
+}
+
+.card-section > p { font-size: 14px; color: var(--mesh-muted); }
+
+.mesh-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+  gap: 12px;
+  align-items: start;
+}
+
+.mesh-columns .card-section + .card-section { margin-top: 0; }
+
+pre {
+  margin: 0;
+  overflow-x: auto;
+  padding: 12px 14px;
+  border: 1px solid var(--mesh-border);
+  border-radius: 6px;
+  background: var(--mesh-page);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+pre code { font-size: inherit; }
+
+/* --- the footer, as Meshview's ------------------------------------------- */
+
+.mesh-footer {
+  border-top: 1px solid var(--mesh-border);
+  color: var(--mesh-muted);
+  font-size: 13px;
+}
+
+.mesh-footer-inner {
+  max-width: 1280px;
+  margin: auto;
+  padding: 22px 28px;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.mesh-footer .heart { color: #d93848; }
+
+@media (max-width: 700px) {
+  .mesh-header-inner { padding: 0 14px; gap: 12px; }
+  .mesh-nav { flex-wrap: nowrap; }
+  .mesh-nav .wide { display: none; }
+  .mesh-content { padding: 12px 14px 32px; }
+  .mesh-hero { padding-top: 24px; }
+  .mesh-hero h1 { font-size: 27px; }
+  .mesh-hero .lead { font-size: 16px; }
+  .card-section { padding: 12px 14px 14px; }
+  .mesh-footer-inner { padding: 18px 14px; }
+}

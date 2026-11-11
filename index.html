@@ -1,0 +1,258 @@
+<!doctype html>
+<!--
+  SPDX-License-Identifier: AGPL-3.0-or-later
+  Copyright (C) 2026 Óscar García Amor <ogarcia@connectical.com>
+
+  Meshview's own page, made of the interface's own pieces. It says less than the
+  documentation, links to where the rest is, and shows the screens. The Spanish
+  one is es/index.html, and the two are kept saying the same.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Meshview — real-time monitoring for Meshtastic mesh networks</title>
+
+    <meta name="description" content="Meshview reads a Meshtastic mesh network from MQTT and shows it live: a map of its nodes, the packets they send, the paths those packets take and statistics about all of it. One static binary, written in Rust." />
+    <link rel="canonical" href="https://meshview.github.io/" />
+    <link rel="alternate" hreflang="en" href="https://meshview.github.io/" />
+    <link rel="alternate" hreflang="es" href="https://meshview.github.io/es/" />
+    <link rel="alternate" hreflang="x-default" href="https://meshview.github.io/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Meshview" />
+    <meta property="og:title" content="Meshview — real-time monitoring for Meshtastic mesh networks" />
+    <meta property="og:description" content="A live map of a Meshtastic mesh, its nodes, packets, traceroutes and statistics, from MQTT. One static binary, written in Rust." />
+    <meta property="og:url" content="https://meshview.github.io/" />
+    <meta property="og:image" content="https://meshview.github.io/og.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Meshview's mark, a mesh under a magnifying glass, beside its name and one line: real-time monitoring for Meshtastic mesh networks" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:locale:alternate" content="es_ES" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+    <meta name="theme-color" content="#245ea8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#193d69" media="(prefers-color-scheme: dark)" />
+
+    <link rel="preload" href="fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="meshview.css" />
+  </head>
+
+  <body>
+    <header class="mesh-header">
+      <div class="mesh-header-inner">
+        <a class="mesh-brand" href="./">
+          <img src="favicon.svg" alt="" width="28" height="28" />
+          Meshview
+        </a>
+        <nav class="mesh-nav" aria-label="Sections">
+          <a class="wide" href="#features">Features</a>
+          <a class="wide" href="#screens">Screens</a>
+          <a class="wide" href="#running">Run it</a>
+          <a class="wide" href="https://github.com/meshview/meshview/tree/master/docs">Docs<span class="mesh-nav-external" aria-hidden="true">↗</span></a>
+          <a href="https://github.com/meshview/meshview">GitHub<span class="mesh-nav-external" aria-hidden="true">↗</span></a>
+        </nav>
+        <a class="mesh-lang" href="es/" hreflang="es" lang="es" title="Español">ES</a>
+      </div>
+    </header>
+
+    <main class="mesh-content">
+      <section class="mesh-hero">
+        <h1>See your Meshtastic mesh, live.</h1>
+        <p class="lead">
+          Meshview reads a Meshtastic mesh network from an MQTT broker and shows it as
+          it happens: a map of its nodes, the packets they send, the paths those
+          packets take, and statistics about all of it.
+        </p>
+        <p class="note">
+          This is Meshview rewritten in Rust, taking over from the
+          <a href="https://github.com/pablorevilla-meshtastic/meshview">Python version</a>:
+          the same pages, the same API and the same database, which it takes over as
+          it is. One static binary with the whole web inside, in English, Spanish and
+          Russian. Every change to <code>master</code> is built, tested and published as an
+          image, and it already runs a public mesh.
+        </p>
+        <div class="mesh-actions">
+          <a class="mesh-button" href="#running"><span class="ti ti-download" aria-hidden="true"></span> Run it</a>
+          <a class="mesh-secondary-button" href="https://github.com/meshview/meshview/blob/master/docs/migrating-from-python.md">Coming from the Python version</a>
+          <a class="mesh-secondary-button" href="https://github.com/meshview/meshview"><span class="ti ti-brand-github" aria-hidden="true"></span> Source on GitHub</a>
+        </div>
+      </section>
+
+      <section id="features">
+        <div class="mesh-features">
+          <div class="mesh-feature">
+            <span class="mesh-feature-icon" aria-hidden="true"><span class="ti ti-map-2"></span></span>
+            <h3>Live map</h3>
+            <p>Every node heard, coloured by the preset of its channel, with the links traceroutes and neighbour reports reveal, and each packet blinking as it arrives.</p>
+          </div>
+          <div class="mesh-feature">
+            <span class="mesh-feature-icon" aria-hidden="true"><span class="ti ti-id"></span></span>
+            <h3>A page per node</h3>
+            <p>Its telemetry and neighbours, a QR code to add it as a contact, and how far it is predicted to reach, from the ITS terrain model.</p>
+          </div>
+          <div class="mesh-feature">
+            <span class="mesh-feature-icon" aria-hidden="true"><span class="ti ti-route"></span></span>
+            <h3>Traceroutes</h3>
+            <p>Drawn there and back, from what every gateway that heard them reported.</p>
+          </div>
+          <div class="mesh-feature">
+            <span class="mesh-feature-icon" aria-hidden="true"><span class="ti ti-chart-line"></span></span>
+            <h3>Statistics</h3>
+            <p>Packets, nodes and gateways day by day, the busiest nodes, the chat, every packet as it comes, and a kiosk mode for a screen on a wall.</p>
+          </div>
+          <div class="mesh-feature">
+            <span class="mesh-feature-icon" aria-hidden="true"><span class="ti ti-broadcast"></span></span>
+            <h3>From MQTT</h3>
+            <p>Plain or over TLS, into SQLite, with a daily cleanup and snapshot, and consistent backups when you ask for them.</p>
+          </div>
+          <div class="mesh-feature">
+            <span class="mesh-feature-icon" aria-hidden="true"><span class="ti ti-router"></span></span>
+            <h3>One process, or many</h3>
+            <p>Everything in one, or one ingester that writes and as many web servers as you like reading beside it, with probes for Kubernetes.</p>
+          </div>
+          <div class="mesh-feature">
+            <span class="mesh-feature-icon" aria-hidden="true"><span class="ti ti-link"></span></span>
+            <h3>An API</h3>
+            <p>Versioned, and documented by the server itself in an interactive reference, in English, Spanish and Russian.</p>
+          </div>
+          <div class="mesh-feature">
+            <span class="mesh-feature-icon" aria-hidden="true"><span class="ti ti-brand-github"></span></span>
+            <h3>Free software</h3>
+            <p>Under the GNU AGPL, version 3 or later, written in Rust. Contributions welcome.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="screens">
+        <div class="data-heading">
+          <h2>Screens</h2>
+          <p>The San Francisco Bay Area Mesh, as Meshview shows it.</p>
+        </div>
+
+        <figure class="card-section">
+          <div class="card-head"><span class="ti ti-map-2" aria-hidden="true"></span><h3 class="section-header">Mesh overview</h3></div>
+          <img
+            src="shots/en-dashboard.webp" width="1600" height="900"
+            alt="The home page of the San Francisco Bay Area Mesh: counts of recent and
+                 active nodes, MQTT gateways and packets, a list of nodes, and a map of
+                 northern California covered in node dots, with two packets labelled as
+                 they arrive."
+          />
+          <p>Over a thousand nodes, packets labelled on the map as they are heard, and the nodes beside it to search.</p>
+        </figure>
+
+        <figure class="card-section">
+          <div class="card-head"><span class="ti ti-id" aria-hidden="true"></span><h3 class="section-header">Node</h3></div>
+          <img
+            src="shots/en-node.webp" width="1600" height="900" loading="lazy"
+            alt="A node's page: its identity, device and channel, position and
+                 activity, over a map of Sacramento with the node's predicted coverage
+                 drawn as an outline around it."
+          />
+          <p>Who it is, what it runs, where it is, how much it is heard, and how far it is predicted to reach.</p>
+        </figure>
+
+        <figure class="card-section">
+          <div class="card-head"><span class="ti ti-route" aria-hidden="true"></span><h3 class="section-header">Traceroute</h3></div>
+          <img
+            src="shots/en-traceroute.webp" width="1600" height="900" loading="lazy"
+            alt="A traceroute drawn as a graph: green arrows for the way from the node
+                 that started it to the one it traced, dashed red ones for the way back."
+          />
+          <p>The way there in green, the way back in red.</p>
+        </figure>
+
+        <figure class="card-section">
+          <div class="card-head"><span class="ti ti-affiliate" aria-hidden="true"></span><h3 class="section-header">Mesh graph</h3></div>
+          <img
+            src="shots/en-graph.webp" width="1600" height="900" loading="lazy"
+            alt="The mesh graph of the MediumFast channel: hundreds of nodes coloured by
+                 role, routers larger, joined by the links traceroutes and neighbour
+                 reports found."
+          />
+          <p>Every link heard in the last twelve hours, nodes coloured by role.</p>
+        </figure>
+
+        <figure class="card-section">
+          <div class="card-head"><span class="ti ti-chart-line" aria-hidden="true"></span><h3 class="section-header">Mesh statistics</h3></div>
+          <img
+            src="shots/en-stats.webp" width="1600" height="900" loading="lazy"
+            alt="The statistics page: totals of nodes, packets, sightings and gateways,
+                 and charts of packets and nodes per day."
+          />
+          <p>Day by day, from daily snapshots that outlive the packets they were counted from.</p>
+        </figure>
+
+        <figure class="card-section">
+          <div class="card-head"><span class="ti ti-id" aria-hidden="true"></span><h3 class="section-header">Network nodes</h3></div>
+          <img
+            src="shots/en-nodes.webp" width="1600" height="900" loading="lazy"
+            alt="The node list: a table of nodes with their hardware, role, position,
+                 channel and when they were last seen, with filters above it."
+          />
+          <p>Filtered, sorted and paged by the server, so thousands of nodes stay quick.</p>
+        </figure>
+
+        <figure class="card-section">
+          <div class="card-head"><span class="ti ti-link" aria-hidden="true"></span><h3 class="section-header">API reference</h3></div>
+          <img
+            src="shots/en-api.webp" width="1600" height="900" loading="lazy"
+            alt="The API reference: the conventions of the API, with the endpoints listed
+                 by group beside them."
+          />
+          <p>At <code>/api/docs</code> on every Meshview, built from the code that answers.</p>
+        </figure>
+      </section>
+
+      <section id="running">
+        <div class="data-heading">
+          <h2>Run it</h2>
+          <p>A container, a configuration file, and a broker to read.</p>
+        </div>
+
+        <div class="mesh-columns">
+          <div class="card-section">
+            <div class="card-head"><span class="ti ti-download" aria-hidden="true"></span><h3 class="section-header">Container</h3></div>
+            <pre><code>podman run -d --name meshview \
+  -p 8081:8081 \
+  -v meshview-data:/data \
+  -v ./config.toml:/data/config.toml:ro \
+  ghcr.io/meshview/meshview:latest</code></pre>
+            <p>The database and the configuration live in <code>/data</code>. <code>latest</code> is the newest release, and every version has a tag of its own, for <code>amd64</code> and <code>arm64</code>.</p>
+            <p>Feeling brave? <code>master</code> is rebuilt on every change: tomorrow's features today, with bugs guaranteed and no extra charge.</p>
+          </div>
+
+          <div class="card-section">
+            <div class="card-head"><span class="ti ti-broadcast" aria-hidden="true"></span><h3 class="section-header">Configuration</h3></div>
+            <pre><code>[mqtt]
+server = "mqtt.example.org"
+topics = ["msh/EU_868/#"]
+
+[site]
+title = "Our mesh"
+language = "en"</code></pre>
+            <p>TOML, and any key can also come from the environment, as <code>MESHVIEW_MQTT__SERVER</code>. See the <a href="https://github.com/meshview/meshview/blob/master/docs/configuration.md">configuration reference</a> and the <a href="https://github.com/meshview/meshview/blob/master/docs/deployment.md">deployment guide</a>.</p>
+          </div>
+        </div>
+
+        <div class="card-section">
+          <div class="card-head"><span class="ti ti-arrow-bar-to-down" aria-hidden="true"></span><h3 class="section-header">Coming from the Python version</h3></div>
+          <p>Stop it, convert its <code>config.ini</code> with <code>scripts/convert-config.py</code>, and start Meshview on the same database: it takes it over as it is, every packet and node included, and the old API addresses redirect to the new ones. The <a href="https://github.com/meshview/meshview/blob/master/docs/migrating-from-python.md">migration guide</a> has the details, and how to go back.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="mesh-footer">
+      <div class="mesh-footer-inner">
+        <p>Made with <span class="heart" aria-label="love">♥</span> in Galicia, Spain, Europe <span aria-hidden="true">🇪🇺</span> by Óscar García Amor and in San Francisco, California, USA <span aria-hidden="true">🇺🇸</span> by Pablo Revilla</p>
+      </div>
+    </footer>
+  </body>
+</html>

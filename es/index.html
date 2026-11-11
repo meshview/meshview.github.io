@@ -1,0 +1,257 @@
+<!doctype html>
+<!--
+  SPDX-License-Identifier: AGPL-3.0-or-later
+  Copyright (C) 2026 Óscar García Amor <ogarcia@connectical.com>
+
+  La página de Meshview en español: dice lo mismo que la inglesa, ../index.html,
+  con las capturas de la malla de O Zulo en lugar de las de San Francisco.
+-->
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Meshview — monitorización en tiempo real de mallas Meshtastic</title>
+
+    <meta name="description" content="Meshview lee una malla Meshtastic desde MQTT y la muestra en directo: un mapa de sus nodos, los paquetes que envían, los caminos que siguen y estadísticas de todo ello. Un único binario estático, escrito en Rust." />
+    <link rel="canonical" href="https://meshview.github.io/es/" />
+    <link rel="alternate" hreflang="en" href="https://meshview.github.io/" />
+    <link rel="alternate" hreflang="es" href="https://meshview.github.io/es/" />
+    <link rel="alternate" hreflang="x-default" href="https://meshview.github.io/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Meshview" />
+    <meta property="og:title" content="Meshview — monitorización en tiempo real de mallas Meshtastic" />
+    <meta property="og:description" content="Un mapa en directo de una malla Meshtastic, con sus nodos, paquetes, traceroutes y estadísticas, desde MQTT. Un único binario estático, escrito en Rust." />
+    <meta property="og:url" content="https://meshview.github.io/es/" />
+    <meta property="og:image" content="https://meshview.github.io/og.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="La marca de Meshview, una malla bajo una lupa, junto a su nombre y una línea: monitorización en tiempo real de mallas Meshtastic" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:locale:alternate" content="en_GB" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="../favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+
+    <meta name="theme-color" content="#245ea8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#193d69" media="(prefers-color-scheme: dark)" />
+
+    <link rel="preload" href="../fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../meshview.css" />
+  </head>
+
+  <body>
+    <header class="mesh-header">
+      <div class="mesh-header-inner">
+        <a class="mesh-brand" href="./">
+          <img src="../favicon.svg" alt="" width="28" height="28" />
+          Meshview
+        </a>
+        <nav class="mesh-nav" aria-label="Secciones">
+          <a class="wide" href="#features">Funciones</a>
+          <a class="wide" href="#screens">Capturas</a>
+          <a class="wide" href="#running">Ejecutarlo</a>
+          <a class="wide" href="https://github.com/meshview/meshview/tree/master/docs">Documentación<span class="mesh-nav-external" aria-hidden="true">↗</span></a>
+          <a href="https://github.com/meshview/meshview">GitHub<span class="mesh-nav-external" aria-hidden="true">↗</span></a>
+        </nav>
+        <a class="mesh-lang" href="../" hreflang="en" lang="en" title="English">EN</a>
+      </div>
+    </header>
+
+    <main class="mesh-content">
+      <section class="mesh-hero">
+        <h1>Mira tu malla Meshtastic, en directo.</h1>
+        <p class="lead">
+          Meshview lee una red mallada Meshtastic desde un broker MQTT y la muestra
+          mientras ocurre: un mapa de sus nodos, los paquetes que envían, los caminos
+          que siguen esos paquetes y estadísticas de todo ello.
+        </p>
+        <p class="note">
+          Esto es Meshview reescrito en Rust, que toma el relevo de la
+          <a href="https://github.com/pablorevilla-meshtastic/meshview">versión en Python</a>:
+          las mismas páginas, la misma API y la misma base de datos, que adopta tal
+          cual. Un único binario estático con toda la web dentro, en inglés, español
+          y ruso. Cada cambio en <code>master</code> se compila, se prueba y se publica como
+          imagen, y ya da servicio a una malla pública.
+        </p>
+        <div class="mesh-actions">
+          <a class="mesh-button" href="#running"><span class="ti ti-download" aria-hidden="true"></span> Ejecutarlo</a>
+          <a class="mesh-secondary-button" href="https://github.com/meshview/meshview/blob/master/docs/migrating-from-python.md">Si vienes de la versión en Python</a>
+          <a class="mesh-secondary-button" href="https://github.com/meshview/meshview"><span class="ti ti-brand-github" aria-hidden="true"></span> Código en GitHub</a>
+        </div>
+      </section>
+
+      <section id="features">
+        <div class="mesh-features">
+          <div class="mesh-feature">
+            <span class="mesh-feature-icon" aria-hidden="true"><span class="ti ti-map-2"></span></span>
+            <h3>Mapa en directo</h3>
+            <p>Cada nodo que se oye, coloreado según el preset de su canal, con los enlaces que revelan los traceroutes y los informes de vecinos, y cada paquete parpadeando al llegar.</p>
+          </div>
+          <div class="mesh-feature">
+            <span class="mesh-feature-icon" aria-hidden="true"><span class="ti ti-id"></span></span>
+            <h3>Una página por nodo</h3>
+            <p>Su telemetría y sus vecinos, un código QR para añadirlo como contacto y hasta dónde se prevé que llegue, con el modelo de terreno del ITS.</p>
+          </div>
+          <div class="mesh-feature">
+            <span class="mesh-feature-icon" aria-hidden="true"><span class="ti ti-route"></span></span>
+            <h3>Traceroutes</h3>
+            <p>Dibujados de ida y vuelta, a partir de lo que informó cada gateway que los oyó.</p>
+          </div>
+          <div class="mesh-feature">
+            <span class="mesh-feature-icon" aria-hidden="true"><span class="ti ti-chart-line"></span></span>
+            <h3>Estadísticas</h3>
+            <p>Paquetes, nodos y gateways día a día, los nodos con más tráfico, las conversaciones, cada paquete según llega y un modo kiosco para una pantalla en la pared.</p>
+          </div>
+          <div class="mesh-feature">
+            <span class="mesh-feature-icon" aria-hidden="true"><span class="ti ti-broadcast"></span></span>
+            <h3>Desde MQTT</h3>
+            <p>En claro o con TLS, a una base SQLite, con limpieza e instantánea diarias y copias de seguridad consistentes cuando las pidas.</p>
+          </div>
+          <div class="mesh-feature">
+            <span class="mesh-feature-icon" aria-hidden="true"><span class="ti ti-router"></span></span>
+            <h3>Un proceso, o varios</h3>
+            <p>Todo en uno, o un ingestador que escribe y tantos servidores web como quieras leyendo a su lado, con sondas para Kubernetes.</p>
+          </div>
+          <div class="mesh-feature">
+            <span class="mesh-feature-icon" aria-hidden="true"><span class="ti ti-link"></span></span>
+            <h3>Una API</h3>
+            <p>Versionada, y documentada por el propio servidor en una referencia interactiva, en inglés, español y ruso.</p>
+          </div>
+          <div class="mesh-feature">
+            <span class="mesh-feature-icon" aria-hidden="true"><span class="ti ti-brand-github"></span></span>
+            <h3>Software libre</h3>
+            <p>Bajo la GNU AGPL, versión 3 o posterior, escrito en Rust. Las contribuciones son bienvenidas.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="screens">
+        <div class="data-heading">
+          <h2>Capturas</h2>
+          <p>La malla que recoge O Zulo, tal como la muestra Meshview.</p>
+        </div>
+
+        <figure class="card-section">
+          <div class="card-head"><span class="ti ti-map-2" aria-hidden="true"></span><h3 class="section-header">Resumen de la malla</h3></div>
+          <img
+            src="../shots/es-dashboard.webp" width="1600" height="900"
+            alt="La portada de la malla de O Zulo: nodos recientes y activos, gateways
+                 MQTT y paquetes, una lista de nodos y un mapa de la península ibérica
+                 salpicado de nodos."
+          />
+          <p>Más de mil nodos, de Galicia a Andalucía, con la lista al lado para buscar.</p>
+        </figure>
+
+        <figure class="card-section">
+          <div class="card-head"><span class="ti ti-id" aria-hidden="true"></span><h3 class="section-header">Nodo</h3></div>
+          <img
+            src="../shots/es-node.webp" width="1600" height="900" loading="lazy"
+            alt="La página de un nodo: su identidad, dispositivo y canal, posición y
+                 actividad, sobre un mapa de A Coruña con sus vecinos y su cobertura
+                 predicha dibujada como un contorno a su alrededor."
+          />
+          <p>Quién es, qué lleva, dónde está, cuánto se le oye, sus vecinos y hasta dónde se prevé que llegue.</p>
+        </figure>
+
+        <figure class="card-section">
+          <div class="card-head"><span class="ti ti-route" aria-hidden="true"></span><h3 class="section-header">Traceroute</h3></div>
+          <img
+            src="../shots/es-traceroute.webp" width="1600" height="900" loading="lazy"
+            alt="Un traceroute dibujado como grafo: flechas verdes para la ida desde el
+                 nodo que lo inició hasta el trazado, y rojas discontinuas para la
+                 vuelta."
+          />
+          <p>La ida en verde y la vuelta en rojo.</p>
+        </figure>
+
+        <figure class="card-section">
+          <div class="card-head"><span class="ti ti-affiliate" aria-hidden="true"></span><h3 class="section-header">Gráfico de la malla</h3></div>
+          <img
+            src="../shots/es-graph.webp" width="1600" height="900" loading="lazy"
+            alt="El grafo de la malla del canal NarrowFast: nodos coloreados por su rol,
+                 los routers más grandes, unidos por los enlaces que encontraron los
+                 traceroutes y los informes de vecinos."
+          />
+          <p>Cada enlace oído en las últimas doce horas, con los nodos coloreados por su rol.</p>
+        </figure>
+
+        <figure class="card-section">
+          <div class="card-head"><span class="ti ti-chart-line" aria-hidden="true"></span><h3 class="section-header">Estadísticas de la malla</h3></div>
+          <img
+            src="../shots/es-stats.webp" width="1600" height="900" loading="lazy"
+            alt="La página de estadísticas: totales de nodos, paquetes, observaciones y
+                 gateways, y gráficas de paquetes y nodos por día."
+          />
+          <p>Día a día, a partir de instantáneas diarias que sobreviven a los paquetes de los que salieron.</p>
+        </figure>
+
+        <figure class="card-section">
+          <div class="card-head"><span class="ti ti-id" aria-hidden="true"></span><h3 class="section-header">Nodos de la red</h3></div>
+          <img
+            src="../shots/es-nodes.webp" width="1600" height="900" loading="lazy"
+            alt="La lista de nodos: una tabla con su hardware, rol, posición, canal y la
+                 última vez que se oyeron, con filtros encima."
+          />
+          <p>Filtrados, ordenados y paginados por el servidor, para que miles de nodos sigan yendo ágiles.</p>
+        </figure>
+
+        <figure class="card-section">
+          <div class="card-head"><span class="ti ti-link" aria-hidden="true"></span><h3 class="section-header">Referencia de la API</h3></div>
+          <img
+            src="../shots/es-api.webp" width="1600" height="900" loading="lazy"
+            alt="La referencia de la API en español: las convenciones de la API, con los
+                 endpoints agrupados a su lado."
+          />
+          <p>En <code>/api/docs</code> de cada Meshview, generada a partir del código que responde.</p>
+        </figure>
+      </section>
+
+      <section id="running">
+        <div class="data-heading">
+          <h2>Ejecutarlo</h2>
+          <p>Un contenedor, un fichero de configuración y un broker que leer.</p>
+        </div>
+
+        <div class="mesh-columns">
+          <div class="card-section">
+            <div class="card-head"><span class="ti ti-download" aria-hidden="true"></span><h3 class="section-header">Contenedor</h3></div>
+            <pre><code>podman run -d --name meshview \
+  -p 8081:8081 \
+  -v meshview-data:/data \
+  -v ./config.toml:/data/config.toml:ro \
+  ghcr.io/meshview/meshview:latest</code></pre>
+            <p>La base de datos y la configuración viven en <code>/data</code>. <code>latest</code> es la última versión publicada, y cada versión tiene su propia etiqueta, para <code>amd64</code> y <code>arm64</code>.</p>
+            <p>¿Te va el riesgo? <code>master</code> se reconstruye con cada cambio: lo de mañana hoy mismo, con fallos garantizados y sin coste adicional.</p>
+          </div>
+
+          <div class="card-section">
+            <div class="card-head"><span class="ti ti-broadcast" aria-hidden="true"></span><h3 class="section-header">Configuración</h3></div>
+            <pre><code>[mqtt]
+server = "mqtt.example.org"
+topics = ["msh/EU_868/#"]
+
+[site]
+title = "Nuestra malla"
+language = "es"</code></pre>
+            <p>En TOML, y cualquier clave puede venir también del entorno, como <code>MESHVIEW_MQTT__SERVER</code>. Mira la <a href="https://github.com/meshview/meshview/blob/master/docs/configuration.md">referencia de configuración</a> y la <a href="https://github.com/meshview/meshview/blob/master/docs/deployment.md">guía de despliegue</a>.</p>
+          </div>
+        </div>
+
+        <div class="card-section">
+          <div class="card-head"><span class="ti ti-arrow-bar-to-down" aria-hidden="true"></span><h3 class="section-header">Si vienes de la versión en Python</h3></div>
+          <p>Detenla, convierte su <code>config.ini</code> con <code>scripts/convert-config.py</code> y arranca Meshview sobre la misma base de datos: la adopta tal cual, con todos sus paquetes y nodos, y las direcciones antiguas de la API redirigen a las nuevas. La <a href="https://github.com/meshview/meshview/blob/master/docs/migrating-from-python.md">guía de migración</a> tiene los detalles, y cómo volver atrás.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="mesh-footer">
+      <div class="mesh-footer-inner">
+        <p>Hecho con <span class="heart" aria-label="amor">♥</span> en Galicia, España, Europa <span aria-hidden="true">🇪🇺</span> por Óscar García Amor y en San Francisco, California, EE. UU. <span aria-hidden="true">🇺🇸</span> por Pablo Revilla</p>
+      </div>
+    </footer>
+  </body>
+</html>
