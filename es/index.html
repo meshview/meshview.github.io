@@ -222,9 +222,9 @@
             <pre><code>podman run -d --name meshview \
   -p 8081:8081 \
   -v meshview-data:/data \
-  -v ./config.toml:/data/config.toml:ro \
+  -v ./config.toml:/etc/meshview/config.toml:ro \
   ghcr.io/meshview/meshview:latest</code></pre>
-            <p>La base de datos y la configuración viven en <code>/data</code>. <code>latest</code> es la última versión publicada, y cada versión tiene su propia etiqueta, para <code>amd64</code> y <code>arm64</code>.</p>
+            <p>La base de datos vive en <code>/data</code>, y la configuración, de solo lectura, en <code>/etc/meshview</code>. <code>latest</code> es la última versión publicada, y cada versión tiene su propia etiqueta, para <code>amd64</code> y <code>arm64</code>.</p>
             <p>¿Te va el riesgo? <code>master</code> se reconstruye con cada cambio: lo de mañana hoy mismo, con fallos garantizados y sin coste adicional.</p>
           </div>
 
