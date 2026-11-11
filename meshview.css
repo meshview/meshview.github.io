@@ -365,10 +365,10 @@ p, figure { margin: 0; }
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
   gap: 12px;
-  align-items: start;
 }
 
 .mesh-columns .card-section + .card-section { margin-top: 0; }
+.mesh-columns + .card-section { margin-top: 12px; }
 
 pre {
   margin: 0;
