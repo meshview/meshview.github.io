@@ -17,7 +17,8 @@ image a link to the site shows where it is pasted, 1200×630.
 `og-instance.png`, the same size, is the one a link to a Meshview instance
 shows when the instance has no `domain` configured to serve its own from: the
 same picture Meshview carries, its mark and name with no words that might not
-fit the instance.
+fit the instance. `og-instance-node.png` is its picture for a link to a node:
+the mark of a node above Meshview's.
 
 To look at it before publishing:
 
