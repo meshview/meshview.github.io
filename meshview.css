@@ -110,6 +110,7 @@ p, figure { margin: 0; }
 .ti-download { --icon: url(icons/download.svg); }
 .ti-brand-github { --icon: url(icons/brand-github.svg); }
 .ti-arrow-bar-to-down { --icon: url(icons/arrow-bar-to-down.svg); }
+.ti-world { --icon: url(icons/world.svg); }
 
 /* --- the header bar, as on every Meshview page --------------------------- */
 
