@@ -401,6 +401,14 @@ pre code { font-size: inherit; }
 
 .mesh-footer .heart { color: #d93848; }
 
+/* Flags as pictures: emoji flags do not show on Windows. */
+.mesh-footer .flag {
+  height: 0.95em;
+  width: auto;
+  vertical-align: -0.12em;
+  border-radius: 1.5px;
+}
+
 @media (max-width: 700px) {
   .mesh-header-inner { padding: 0 14px; gap: 12px; }
   .mesh-nav { flex-wrap: nowrap; }

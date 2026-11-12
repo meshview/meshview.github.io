@@ -7,7 +7,8 @@ Plain HTML and one stylesheet, `meshview.css`, with nothing to build: GitHub
 Pages serves this repository's `master` branch as it stands, and `.nojekyll`
 keeps Jekyll from processing it. It is made of Meshview's own pieces, its
 header bar, cards and colours, with the same Inter typeface (`fonts/`, SIL Open
-Font License) and Tabler icons (`icons/`, MIT) the interface carries. The English page is `index.html` and the
+Font License) and Tabler icons (`icons/`, MIT) the interface carries. The flags
+in the footer are SVG in `flags/`, as emoji flags do not show on Windows. The English page is `index.html` and the
 Spanish one `es/index.html`; they say the same, and a change to one goes to the
 other.
 
