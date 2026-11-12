@@ -109,7 +109,7 @@
           <div class="mesh-feature">
             <span class="mesh-feature-icon" aria-hidden="true"><span class="ti ti-broadcast"></span></span>
             <h3>Desde MQTT</h3>
-            <p>En claro o con TLS, a una base SQLite, con limpieza e instantánea diarias y copias de seguridad consistentes cuando las pidas.</p>
+            <p>En claro o con TLS, a una base SQLite o PostgreSQL, con limpieza e instantánea diarias y, en SQLite, copias de seguridad consistentes cuando las pidas.</p>
           </div>
           <div class="mesh-feature">
             <span class="mesh-feature-icon" aria-hidden="true"><span class="ti ti-router"></span></span>
@@ -243,7 +243,7 @@ language = "es"</code></pre>
 
         <div class="card-section">
           <div class="card-head"><span class="ti ti-arrow-bar-to-down" aria-hidden="true"></span><h3 class="section-header">Si vienes de la versión en Python</h3></div>
-          <p>Detenla, convierte su <code>config.ini</code> con <code>scripts/convert-config.py</code> y arranca Meshview sobre la misma base de datos: la adopta tal cual, con todos sus paquetes y nodos, y las direcciones antiguas de la API redirigen a las nuevas. La <a href="https://github.com/meshview/meshview/blob/master/docs/migrating-from-python.md">guía de migración</a> tiene los detalles, y cómo volver atrás.</p>
+          <p>Detenla, convierte su <code>config.ini</code> con <code>scripts/convert-config.py</code> y arranca Meshview sobre la misma base de datos: la adopta tal cual, con todos sus paquetes y nodos, y las direcciones antiguas de la API redirigen a las nuevas. La <a href="https://github.com/meshview/meshview/blob/master/docs/migrating-from-python.md">guía de migración</a> tiene los detalles: cómo volver atrás, con SQLite, y cómo probarlo antes en una copia, con PostgreSQL.</p>
         </div>
       </section>
     </main>
