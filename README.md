@@ -14,6 +14,10 @@ other.
 The screenshots in `shots/` are WebP, 1600×900: the English ones from the San
 Francisco Bay Area Mesh, the Spanish ones from O Zulo's mesh. `og.png` is the
 image a link to the site shows where it is pasted, 1200×630.
+`og-instance.png`, the same size, is the one a link to a Meshview instance
+shows when the instance has no `domain` configured to serve its own from: the
+same picture Meshview carries, its mark and name with no words that might not
+fit the instance.
 
 To look at it before publishing:
 
