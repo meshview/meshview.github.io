@@ -10,17 +10,17 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Meshview — monitorización en tiempo real de mallas Meshtastic</title>
+    <title>Meshview Rust — monitorización en tiempo real de mallas Meshtastic</title>
 
-    <meta name="description" content="Meshview lee una malla Meshtastic desde MQTT y la muestra en directo: un mapa de sus nodos, los paquetes que envían, los caminos que siguen y estadísticas de todo ello. Un único binario estático, escrito en Rust." />
+    <meta name="description" content="Meshview Rust lee una malla Meshtastic desde MQTT y la muestra en directo: un mapa de sus nodos, los paquetes que envían, los caminos que siguen y estadísticas de todo ello. Un único binario estático, escrito en Rust." />
     <link rel="canonical" href="https://meshview.github.io/es/" />
     <link rel="alternate" hreflang="en" href="https://meshview.github.io/" />
     <link rel="alternate" hreflang="es" href="https://meshview.github.io/es/" />
     <link rel="alternate" hreflang="x-default" href="https://meshview.github.io/" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Meshview" />
-    <meta property="og:title" content="Meshview — monitorización en tiempo real de mallas Meshtastic" />
+    <meta property="og:site_name" content="Meshview Rust" />
+    <meta property="og:title" content="Meshview Rust — monitorización en tiempo real de mallas Meshtastic" />
     <meta property="og:description" content="Un mapa en directo de una malla Meshtastic, con sus nodos, paquetes, traceroutes y estadísticas, desde MQTT. Un único binario estático, escrito en Rust." />
     <meta property="og:url" content="https://meshview.github.io/es/" />
     <meta property="og:image" content="https://meshview.github.io/og.png" />
@@ -48,7 +48,7 @@
       <div class="mesh-header-inner">
         <a class="mesh-brand" href="./">
           <img src="../favicon.svg" alt="" width="28" height="28" />
-          Meshview
+          Meshview Rust
         </a>
         <nav class="mesh-nav" aria-label="Secciones">
           <a class="wide" href="#features">Funciones</a>
@@ -65,17 +65,21 @@
       <section class="mesh-hero">
         <h1>Mira tu malla Meshtastic, en directo.</h1>
         <p class="lead">
-          Meshview lee una red mallada Meshtastic desde un broker MQTT y la muestra
+          Meshview Rust lee una red mallada Meshtastic desde un broker MQTT y la muestra
           mientras ocurre: un mapa de sus nodos, los paquetes que envían, los caminos
           que siguen esos paquetes y estadísticas de todo ello.
         </p>
         <p class="note">
-          Esto es Meshview reescrito en Rust, que toma el relevo de la
-          versión en Python:
-          las mismas páginas, la misma API y la misma base de datos, que adopta tal
+          Meshview Rust es Meshview reescrito en Rust, que toma el relevo de la
+          versión en Python: las mismas páginas, la misma API y la misma base de datos, que adopta tal
           cual. Un único binario estático con toda la web dentro, en inglés, español
           y ruso. Cada cambio en <code>master</code> se compila, se prueba y se publica como
           imagen, y ya da servicio a una malla pública.
+        </p>
+        <p class="note">
+          Meshview nació como un proyecto en Python, que sigue en paralelo en
+          <a href="https://github.com/pablorevilla-meshtastic/meshview">su repositorio original</a>:
+          son dos proyectos independientes, y las mejoras pasan de uno a otro.
         </p>
         <div class="mesh-actions">
           <a class="mesh-button" href="#running"><span class="ti ti-download" aria-hidden="true"></span> Ejecutarlo</a>
