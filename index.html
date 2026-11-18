@@ -5,9 +5,10 @@
 
   Meshview's own page, made of the interface's own pieces. It says less than the
   documentation, links to where the rest is, and shows the screens. The Spanish
-  one is es/index.html, and the two are kept saying the same.
+  one is es/index.html, and the two are kept saying the same. Each wears one of
+  the interface's accents, this one the green and the Spanish one the blue.
 -->
-<html lang="en">
+<html lang="en" data-accent="green">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -28,7 +29,7 @@
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Meshview's mark, a mesh under a magnifying glass, beside its name and one line: real-time monitoring for Meshtastic mesh networks" />
+    <meta property="og:image:alt" content="Meshview Rust's mark, four nodes of a mesh, beside its name and one line: real-time monitoring for Meshtastic mesh networks" />
     <meta property="og:locale" content="en_GB" />
     <meta property="og:locale:alternate" content="es_ES" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -37,8 +38,8 @@
     <link rel="icon" href="favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 
-    <meta name="theme-color" content="#245ea8" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#193d69" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#151f1a" media="(prefers-color-scheme: dark)" />
 
     <link rel="preload" href="fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="meshview.css" />
@@ -48,7 +49,7 @@
     <header class="mesh-header">
       <div class="mesh-header-inner">
         <a class="mesh-brand" href="./">
-          <img src="favicon.svg" alt="" width="28" height="28" />
+          <svg class="mesh-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7.81 21.77L9.56 17.7M17.38 15.08L22.01 17.72M10.41 24.68L21.59 21.32M17.63 9.4L20.82 7.93"/><circle cx="6" cy="26" r="3"/><circle cx="12" cy="12" r="4.6" fill="currentColor"/><circle cx="26" cy="20" r="3"/><circle cx="25" cy="6" r="3"/></svg>
           Meshview Rust
         </a>
         <nav class="mesh-nav" aria-label="Sections">
@@ -64,7 +65,7 @@
 
     <main class="mesh-content">
       <section class="mesh-hero">
-        <h1>See your Meshtastic mesh, live.</h1>
+        <h1>See your Meshtastic mesh, <span>live</span>.</h1>
         <p class="lead">
           Meshview Rust reads a Meshtastic mesh network from an MQTT broker and shows it as
           it happens: a map of its nodes, the packets they send, the paths those
@@ -73,8 +74,8 @@
         <p class="note">
           Meshview Rust is Meshview rewritten in Rust, taking over from the
           Python version: the same pages, the same API and the same database, which it takes over as
-          it is. One static binary with the whole web inside, in English, Spanish and
-          Russian. Every change to <code>master</code> is built, tested and published as an
+          it is. One static binary with the whole web inside, in English and Spanish,
+          each visitor in their own. Every change to <code>master</code> is built, tested and published as an
           image, and it already runs a public mesh.
         </p>
         <p class="note">
@@ -83,9 +84,9 @@
           the two are independent projects, and improvements travel between them.
         </p>
         <div class="mesh-actions">
-          <a class="mesh-button" href="#running"><span class="ti ti-download" aria-hidden="true"></span> Run it</a>
-          <a class="mesh-secondary-button" href="https://github.com/meshview/meshview/blob/master/docs/migrating-from-python.md">Coming from the Python version</a>
-          <a class="mesh-secondary-button" href="https://github.com/meshview/meshview"><span class="ti ti-brand-github" aria-hidden="true"></span> Source on GitHub</a>
+          <a class="mesh-button is-primary" href="#running"><span class="ti ti-download" aria-hidden="true"></span> Run it</a>
+          <a class="mesh-button" href="https://github.com/meshview/meshview/blob/master/docs/migrating-from-python.md">Coming from the Python version</a>
+          <a class="mesh-button" href="https://github.com/meshview/meshview"><span class="ti ti-brand-github" aria-hidden="true"></span> Source on GitHub</a>
         </div>
       </section>
 
@@ -124,7 +125,12 @@
           <div class="mesh-feature">
             <span class="mesh-feature-icon" aria-hidden="true"><span class="ti ti-link"></span></span>
             <h3>An API</h3>
-            <p>Versioned, and documented by the server itself in an interactive reference, in English, Spanish and Russian.</p>
+            <p>Versioned, and documented by the server itself in an interactive reference, in English and Spanish.</p>
+          </div>
+          <div class="mesh-feature">
+            <span class="mesh-feature-icon" aria-hidden="true"><span class="ti ti-palette"></span></span>
+            <h3>Light or dark, blue or green</h3>
+            <p>Light or dark as the device is, and each visitor picks the accent and the language. This page wears the green; <a href="es/" hreflang="es">the Spanish one</a>, the blue.</p>
           </div>
           <div class="mesh-feature">
             <span class="mesh-feature-icon" aria-hidden="true"><span class="ti ti-brand-github"></span></span>
@@ -144,22 +150,22 @@
           <div class="card-head"><span class="ti ti-map-2" aria-hidden="true"></span><h3 class="section-header">Mesh overview</h3></div>
           <img
             src="shots/en-dashboard.webp" width="1600" height="900"
-            alt="The home page of O Zulo's mesh: counts of recent and active nodes,
-                 MQTT gateways and packets, a list of nodes, and a map of Galicia dotted
-                 with nodes."
+            alt="The home page of O Zulo's mesh: a list of nodes to search, counts of
+                 recent and active nodes, MQTT gateways and packets over a map of Galicia
+                 dotted with nodes, and the live traffic under it."
           />
-          <p>Hundreds of nodes on the map, packets labelled on it as they are heard, and the nodes beside it to search.</p>
+          <p>Hundreds of nodes on the map, the nodes beside it to search, and every packet as it is heard.</p>
         </figure>
 
         <figure class="card-section">
           <div class="card-head"><span class="ti ti-id" aria-hidden="true"></span><h3 class="section-header">Node</h3></div>
           <img
             src="shots/en-node.webp" width="1600" height="900" loading="lazy"
-            alt="A node's page: its identity, device and channel, position and
-                 activity, over a map of A Coruña with its neighbours and its predicted
-                 coverage drawn as an outline around it."
+            alt="A node's page: its identity, device and network, location and
+                 activity, a diagnosis of how it is set up, and a map of A Coruña with
+                 its predicted coverage drawn around it."
           />
-          <p>Who it is, what it runs, where it is, how much it is heard, and how far it is predicted to reach.</p>
+          <p>Who it is, what it runs, where it is, how much it is heard, what may be wrong with its setup, and how far it is predicted to reach.</p>
         </figure>
 
         <figure class="card-section">
@@ -176,7 +182,7 @@
           <div class="card-head"><span class="ti ti-affiliate" aria-hidden="true"></span><h3 class="section-header">Mesh graph</h3></div>
           <img
             src="shots/en-graph.webp" width="1600" height="900" loading="lazy"
-            alt="The mesh graph of the NarrowFast channel: nodes coloured by role,
+            alt="The mesh graph of the SFNarrow channel: nodes coloured by role,
                  routers larger, joined by the links traceroutes and neighbour
                  reports found."
           />
@@ -188,7 +194,8 @@
           <img
             src="shots/en-stats.webp" width="1600" height="900" loading="lazy"
             alt="The statistics page: totals of nodes, packets, sightings and gateways,
-                 and charts of packets and nodes per day."
+                 charts of packets and nodes per day, the top text senders and the
+                 highest routers."
           />
           <p>Day by day, from daily snapshots that outlive the packets they were counted from.</p>
         </figure>
@@ -239,8 +246,7 @@ server = "mqtt.example.org"
 topics = ["msh/EU_868/#"]
 
 [site]
-title = "Our mesh"
-language = "en"</code></pre>
+title = "Our mesh"</code></pre>
             <p>TOML, and any key can also come from the environment, as <code>MESHVIEW_MQTT__SERVER</code>. See the <a href="https://github.com/meshview/meshview/blob/master/docs/configuration.md">configuration reference</a> and the <a href="https://github.com/meshview/meshview/blob/master/docs/deployment.md">deployment guide</a>.</p>
           </div>
         </div>
@@ -255,6 +261,7 @@ language = "en"</code></pre>
     <footer class="mesh-footer">
       <div class="mesh-footer-inner">
         <p>Made with <span class="heart" aria-label="love">♥</span> in Galicia, Spain, Europe <img class="flag" src="flags/eu.svg" width="21" height="14" alt=""> by Óscar García Amor</p>
+        <a href="https://github.com/meshview/meshview"><span class="ti ti-brand-github" aria-hidden="true"></span> Meshview on GitHub</a>
       </div>
     </footer>
   </body>

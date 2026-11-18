@@ -4,7 +4,8 @@
   Copyright (C) 2026 Óscar García Amor <ogarcia@connectical.com>
 
   La página de Meshview en español: dice lo mismo que la inglesa, ../index.html,
-  con las capturas en español.
+  con las capturas en español, y viste el acento azul de la interfaz, como la
+  inglesa el verde.
 -->
 <html lang="es">
   <head>
@@ -27,7 +28,7 @@
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="La marca de Meshview, una malla bajo una lupa, junto a su nombre y una línea: monitorización en tiempo real de mallas Meshtastic" />
+    <meta property="og:image:alt" content="La marca de Meshview Rust, cuatro nodos de una malla, junto a su nombre y una línea: monitorización en tiempo real de mallas Meshtastic" />
     <meta property="og:locale" content="es_ES" />
     <meta property="og:locale:alternate" content="en_GB" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -36,8 +37,8 @@
     <link rel="icon" href="../favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
 
-    <meta name="theme-color" content="#245ea8" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#193d69" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#162032" media="(prefers-color-scheme: dark)" />
 
     <link rel="preload" href="../fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="../meshview.css" />
@@ -47,7 +48,7 @@
     <header class="mesh-header">
       <div class="mesh-header-inner">
         <a class="mesh-brand" href="./">
-          <img src="../favicon.svg" alt="" width="28" height="28" />
+          <svg class="mesh-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7.81 21.77L9.56 17.7M17.38 15.08L22.01 17.72M10.41 24.68L21.59 21.32M17.63 9.4L20.82 7.93"/><circle cx="6" cy="26" r="3"/><circle cx="12" cy="12" r="4.6" fill="currentColor"/><circle cx="26" cy="20" r="3"/><circle cx="25" cy="6" r="3"/></svg>
           Meshview Rust
         </a>
         <nav class="mesh-nav" aria-label="Secciones">
@@ -63,7 +64,7 @@
 
     <main class="mesh-content">
       <section class="mesh-hero">
-        <h1>Mira tu malla Meshtastic, en directo.</h1>
+        <h1>Mira tu malla Meshtastic, <span>en directo</span>.</h1>
         <p class="lead">
           Meshview Rust lee una red mallada Meshtastic desde un broker MQTT y la muestra
           mientras ocurre: un mapa de sus nodos, los paquetes que envían, los caminos
@@ -72,8 +73,8 @@
         <p class="note">
           Meshview Rust es Meshview reescrito en Rust, que toma el relevo de la
           versión en Python: las mismas páginas, la misma API y la misma base de datos, que adopta tal
-          cual. Un único binario estático con toda la web dentro, en inglés, español
-          y ruso. Cada cambio en <code>master</code> se compila, se prueba y se publica como
+          cual. Un único binario estático con toda la web dentro, en inglés y español,
+          cada visitante en el suyo. Cada cambio en <code>master</code> se compila, se prueba y se publica como
           imagen, y ya da servicio a una malla pública.
         </p>
         <p class="note">
@@ -82,9 +83,9 @@
           son dos proyectos independientes, y las mejoras pasan de uno a otro.
         </p>
         <div class="mesh-actions">
-          <a class="mesh-button" href="#running"><span class="ti ti-download" aria-hidden="true"></span> Ejecutarlo</a>
-          <a class="mesh-secondary-button" href="https://github.com/meshview/meshview/blob/master/docs/migrating-from-python.md">Si vienes de la versión en Python</a>
-          <a class="mesh-secondary-button" href="https://github.com/meshview/meshview"><span class="ti ti-brand-github" aria-hidden="true"></span> Código en GitHub</a>
+          <a class="mesh-button is-primary" href="#running"><span class="ti ti-download" aria-hidden="true"></span> Ejecutarlo</a>
+          <a class="mesh-button" href="https://github.com/meshview/meshview/blob/master/docs/migrating-from-python.md">Si vienes de la versión en Python</a>
+          <a class="mesh-button" href="https://github.com/meshview/meshview"><span class="ti ti-brand-github" aria-hidden="true"></span> Código en GitHub</a>
         </div>
       </section>
 
@@ -123,7 +124,12 @@
           <div class="mesh-feature">
             <span class="mesh-feature-icon" aria-hidden="true"><span class="ti ti-link"></span></span>
             <h3>Una API</h3>
-            <p>Versionada, y documentada por el propio servidor en una referencia interactiva, en inglés, español y ruso.</p>
+            <p>Versionada, y documentada por el propio servidor en una referencia interactiva, en inglés y español.</p>
+          </div>
+          <div class="mesh-feature">
+            <span class="mesh-feature-icon" aria-hidden="true"><span class="ti ti-palette"></span></span>
+            <h3>Claro u oscuro, azul o verde</h3>
+            <p>Claro u oscuro según el dispositivo, y cada visitante elige el acento y el idioma. Esta página viste el azul; <a href="../" hreflang="en">la inglesa</a>, el verde.</p>
           </div>
           <div class="mesh-feature">
             <span class="mesh-feature-icon" aria-hidden="true"><span class="ti ti-brand-github"></span></span>
@@ -143,22 +149,22 @@
           <div class="card-head"><span class="ti ti-map-2" aria-hidden="true"></span><h3 class="section-header">Resumen de la malla</h3></div>
           <img
             src="../shots/es-dashboard.webp" width="1600" height="900"
-            alt="La portada de la malla de O Zulo: nodos recientes y activos, gateways
-                 MQTT y paquetes, una lista de nodos y un mapa de Galicia salpicado de
-                 nodos."
+            alt="La portada de la malla de O Zulo: una lista de nodos para buscar,
+                 nodos recientes y activos, gateways MQTT y paquetes sobre un mapa de
+                 Galicia salpicado de nodos, y el tráfico en directo debajo."
           />
-          <p>Cientos de nodos en el mapa, con la lista al lado para buscar.</p>
+          <p>Cientos de nodos en el mapa, la lista al lado para buscar y cada paquete según se oye.</p>
         </figure>
 
         <figure class="card-section">
           <div class="card-head"><span class="ti ti-id" aria-hidden="true"></span><h3 class="section-header">Nodo</h3></div>
           <img
             src="../shots/es-node.webp" width="1600" height="900" loading="lazy"
-            alt="La página de un nodo: su identidad, dispositivo y canal, posición y
-                 actividad, sobre un mapa de A Coruña con sus vecinos y su cobertura
-                 predicha dibujada como un contorno a su alrededor."
+            alt="La página de un nodo: su identidad, dispositivo y red, ubicación y
+                 actividad, un diagnóstico de su configuración y un mapa de A Coruña con
+                 su cobertura predicha dibujada a su alrededor."
           />
-          <p>Quién es, qué lleva, dónde está, cuánto se le oye, sus vecinos y hasta dónde se prevé que llegue.</p>
+          <p>Quién es, qué lleva, dónde está, cuánto se le oye, qué puede fallar en su configuración y hasta dónde se prevé que llegue.</p>
         </figure>
 
         <figure class="card-section">
@@ -176,7 +182,7 @@
           <div class="card-head"><span class="ti ti-affiliate" aria-hidden="true"></span><h3 class="section-header">Gráfico de la malla</h3></div>
           <img
             src="../shots/es-graph.webp" width="1600" height="900" loading="lazy"
-            alt="El grafo de la malla del canal NarrowFast: nodos coloreados por su rol,
+            alt="El grafo de la malla del canal SFNarrow: nodos coloreados por su rol,
                  los routers más grandes, unidos por los enlaces que encontraron los
                  traceroutes y los informes de vecinos."
           />
@@ -188,7 +194,8 @@
           <img
             src="../shots/es-stats.webp" width="1600" height="900" loading="lazy"
             alt="La página de estadísticas: totales de nodos, paquetes, observaciones y
-                 gateways, y gráficas de paquetes y nodos por día."
+                 gateways, gráficas de paquetes y nodos por día, los principales emisores
+                 de texto y los routers más altos."
           />
           <p>Día a día, a partir de instantáneas diarias que sobreviven a los paquetes de los que salieron.</p>
         </figure>
@@ -239,8 +246,7 @@ server = "mqtt.example.org"
 topics = ["msh/EU_868/#"]
 
 [site]
-title = "Nuestra malla"
-language = "es"</code></pre>
+title = "Nuestra malla"</code></pre>
             <p>En TOML, y cualquier clave puede venir también del entorno, como <code>MESHVIEW_MQTT__SERVER</code>. Mira la <a href="https://github.com/meshview/meshview/blob/master/docs/configuration.md">referencia de configuración</a> y la <a href="https://github.com/meshview/meshview/blob/master/docs/deployment.md">guía de despliegue</a>.</p>
           </div>
         </div>
@@ -255,6 +261,7 @@ language = "es"</code></pre>
     <footer class="mesh-footer">
       <div class="mesh-footer-inner">
         <p>Hecho con <span class="heart" aria-label="amor">♥</span> en Galicia, España, Europa <img class="flag" src="../flags/eu.svg" width="21" height="14" alt=""> por Óscar García Amor</p>
+        <a href="https://github.com/meshview/meshview"><span class="ti ti-brand-github" aria-hidden="true"></span> Meshview en GitHub</a>
       </div>
     </footer>
   </body>

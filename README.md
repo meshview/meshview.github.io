@@ -8,12 +8,15 @@ Pages serves this repository's `master` branch as it stands, and `.nojekyll`
 keeps Jekyll from processing it. It is made of Meshview's own pieces, its
 header bar, cards and colours, with the same Inter typeface (`fonts/`, SIL Open
 Font License) and Tabler icons (`icons/`, MIT) the interface carries. The flags
-in the footer are SVG in `flags/`, as emoji flags do not show on Windows. The English page is `index.html` and the
-Spanish one `es/index.html`; they say the same, and a change to one goes to the
-other.
+in the footer are SVG in `flags/`, as emoji flags do not show on Windows. The
+English page is `index.html` and the Spanish one `es/index.html`; they say the
+same, and a change to one goes to the other. Each wears one of the interface's
+two accents, so that both can be seen: the English page the green, with
+`data-accent="green"` on `<html>`, and the Spanish one the blue. Light or dark
+follows the browser.
 
-The screenshots in `shots/` are WebP, 1600×900, from O Zulo's mesh, in English
-and in Spanish. `og.png` is the
+The screenshots in `shots/` are WebP, 1600×900, from O Zulo's mesh, light, in
+English with the green accent and in Spanish with the blue, as their pages. `og.png` is the
 image a link to the site shows where it is pasted, 1200×630.
 `og-instance.png`, the same size, is the one a link to a Meshview instance
 shows when the instance has no `domain` configured to serve its own from: the

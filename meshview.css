@@ -1,10 +1,12 @@
 /* SPDX-License-Identifier: AGPL-3.0-or-later
  * Copyright (C) 2026 Óscar García Amor <ogarcia@connectical.com>
  *
- * Meshview's page, made of Meshview's own pieces: the blue header bar, the
- * cards with their 9px corners, the icons in a soft square, and the colours of
- * both its themes, which follow the browser's. The values are copied from the
- * interface's stylesheets rather than linked, as those are built into the
+ * Meshview's page, made of Meshview's own pieces: its white header bar with
+ * the mark, its buttons, its cards with their 10px corners, the icons in a
+ * soft square, and the colours of both its themes, which follow the browser's,
+ * in both its accents. The English page wears the green, data-accent="green" on
+ * <html>, and the Spanish one the blue, the default. The values are copied from
+ * the interface's stylesheet rather than linked, as that is built into the
  * server and this page is not served by it. */
 
 @font-face {
@@ -29,43 +31,85 @@
     U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
-:root {
-  color-scheme: light dark;
+/* --- the theme: blue, light ---------------------------------------------- */
 
+:root {
+  color-scheme: light;
+  --mesh-font: "Inter Variable", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mesh-mono: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  --mesh-radius: 10px;
+  --mesh-radius-sm: 8px;
+
+  --mesh-page: #f1f4f9;
+  --mesh-surface: #ffffff;
+  --mesh-surface-2: #f6f8fb;
+  --mesh-border: #d9e1ec;
+  --mesh-border-strong: #c6d2e2;
+  --mesh-text: #1d2a3b;
+  --mesh-nav-text: #3d4d63;
+  --mesh-muted: #566579;
   --mesh-primary: #245ea8;
   --mesh-primary-dark: #19467f;
-  --mesh-brand: #245ea8;
-  --mesh-surface: #ffffff;
-  --mesh-text: #243247;
-  --mesh-soft: #eaf1fb;
-  --mesh-hover: #dce8f8;
-  --mesh-border: #dce4ef;
-  --mesh-page: #f5f8fc;
-  --mesh-muted: #566579;
   --mesh-on-primary: #ffffff;
+  --mesh-soft: #e6eef9;
+}
+
+/* Green, light. */
+:root[data-accent="green"] {
+  --mesh-page: #eef2ee;
+  --mesh-surface-2: #f6f9f6;
+  --mesh-border: #d3ddd6;
+  --mesh-border-strong: #c3d0c7;
+  --mesh-text: #0f1c17;
+  --mesh-nav-text: #3f5249;
+  --mesh-muted: #52645c;
+  --mesh-primary: #0b7a52;
+  --mesh-primary-dark: #075c3d;
+  --mesh-soft: #e3f1ea;
 }
 
 @media (prefers-color-scheme: dark) {
+  /* Blue, dark. */
   :root {
+    color-scheme: dark;
+    --mesh-page: #0f1724;
+    --mesh-surface: #162032;
+    --mesh-surface-2: #1a2639;
+    --mesh-border: #2c3b52;
+    --mesh-border-strong: #38496a;
+    --mesh-text: #e2eaf6;
+    --mesh-nav-text: #b7c4d8;
+    --mesh-muted: #9aa9bd;
     --mesh-primary: #8bbcff;
     --mesh-primary-dark: #b6d5ff;
-    --mesh-brand: #193d69;
-    --mesh-surface: #182335;
-    --mesh-text: #e2eaf6;
-    --mesh-soft: #203653;
-    --mesh-hover: #29486c;
-    --mesh-border: #34465f;
-    --mesh-page: #101925;
-    --mesh-muted: #a9b6c9;
-    --mesh-on-primary: #101925;
+    --mesh-on-primary: #0f1724;
+    --mesh-soft: #1f3352;
+  }
+
+  /* Green, dark. */
+  :root[data-accent="green"] {
+    --mesh-page: #0e1512;
+    --mesh-surface: #151f1a;
+    --mesh-surface-2: #1a2620;
+    --mesh-border: #2a3a32;
+    --mesh-border-strong: #36493f;
+    --mesh-text: #e3ece6;
+    --mesh-nav-text: #b9c8bf;
+    --mesh-muted: #93a69b;
+    --mesh-primary: #4cc38a;
+    --mesh-primary-dark: #7fd8ab;
+    --mesh-on-primary: #0e1512;
+    --mesh-soft: #1c3329;
   }
 }
 
-* { box-sizing: border-box; }
+/* --- a reset, as the interface's ----------------------------------------- */
 
-/* A section reached by its link starts below the sticky header bar (48px),
+*, *::before, *::after { box-sizing: border-box; }
+
+/* A section reached by its link starts below the sticky header bar (52px),
    with the same room above it as between the cards. */
-html { scroll-padding-top: 60px; }
+html { scroll-padding-top: 68px; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
 body {
   margin: 0;
@@ -74,20 +118,17 @@ body {
   flex-direction: column;
   background: var(--mesh-page);
   color: var(--mesh-text);
-  font-family: "Inter Variable", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  font-size: 15px;
-  line-height: 1.6;
+  font: 15px/1.6 var(--mesh-font);
+  -webkit-font-smoothing: antialiased;
 }
 
 a { color: var(--mesh-primary); text-decoration: none; }
 a:hover { color: var(--mesh-primary-dark); text-decoration: underline; }
+:focus-visible { outline: 2px solid var(--mesh-primary); outline-offset: 2px; }
 
-code {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.875em;
-}
+code { font-family: var(--mesh-mono); font-size: 0.875em; }
 
-p, figure { margin: 0; }
+p, figure, h1, h2, h3 { margin: 0; }
 
 /* Icons: Tabler's outlines, drawn in the colour of the text around them. */
 .ti {
@@ -110,6 +151,7 @@ p, figure { margin: 0; }
 .ti-download { --icon: url(icons/download.svg); }
 .ti-brand-github { --icon: url(icons/brand-github.svg); }
 .ti-arrow-bar-to-down { --icon: url(icons/arrow-bar-to-down.svg); }
+.ti-palette { --icon: url(icons/palette.svg); }
 
 /* --- the header bar, as on every Meshview page --------------------------- */
 
@@ -117,71 +159,71 @@ p, figure { margin: 0; }
   position: sticky;
   top: 0;
   z-index: 10;
-  background: var(--mesh-brand);
-  color: white;
-  box-shadow: 0 2px 8px #193d6918;
+  background: var(--mesh-surface);
+  border-bottom: 1px solid var(--mesh-border);
 }
 
 .mesh-header-inner {
   max-width: 1280px;
   margin: auto;
-  padding: 0 20px;
-  min-height: 48px;
+  padding: 0 28px;
+  min-height: 52px;
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 24px;
 }
 
 .mesh-brand {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 17px;
-  font-weight: 700;
-  color: white;
+  gap: 10px;
   flex-shrink: 0;
+  color: var(--mesh-text);
+  font-size: 15px;
+  font-weight: 650;
 }
 
-.mesh-brand:hover { color: white; text-decoration: none; }
-.mesh-brand img { width: 28px; height: 28px; display: block; }
+.mesh-brand:hover { color: var(--mesh-text); text-decoration: none; }
+.mesh-logo { width: 30px; height: 30px; flex-shrink: 0; color: var(--mesh-primary); }
 
 .mesh-nav {
   display: flex;
   align-items: center;
-  gap: 4px;
-  flex-wrap: wrap;
+  gap: 2px;
   min-width: 0;
 }
 
 .mesh-nav a {
-  color: #e6effb;
-  padding: 6px 10px;
-  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 12px;
+  border-radius: var(--mesh-radius-sm);
+  color: var(--mesh-nav-text);
   font-size: 14px;
-  line-height: 20px;
   white-space: nowrap;
 }
 
-.mesh-nav a:hover { color: white; background: #ffffff14; text-decoration: none; }
-.mesh-nav-external { margin-left: 4px; font-size: 12px; opacity: 0.75; }
+.mesh-nav a:hover { background: var(--mesh-surface-2); color: var(--mesh-text); text-decoration: none; }
+.mesh-nav-external { margin-left: 4px; font-size: 12px; color: var(--mesh-muted); }
 
-/* The other language, where the interface keeps its theme button. */
+/* The other language, where the interface keeps its preferences button. */
 .mesh-lang {
   margin-left: auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 34px;
-  height: 34px;
+  min-width: 36px;
+  height: 36px;
   padding: 0 10px;
-  border: 1px solid #ffffff59;
-  border-radius: 7px;
-  color: white;
+  border: 1px solid var(--mesh-border);
+  border-radius: var(--mesh-radius-sm);
+  color: var(--mesh-nav-text);
   font-size: 13px;
   font-weight: 600;
 }
 
-.mesh-lang:hover { color: white; background: #ffffff14; text-decoration: none; }
+.mesh-lang:hover { background: var(--mesh-surface-2); color: var(--mesh-text); text-decoration: none; }
 
 /* --- the content --------------------------------------------------------- */
 
@@ -190,24 +232,23 @@ p, figure { margin: 0; }
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 16px 28px 40px;
+  padding: 16px 28px 48px;
 }
 
-.mesh-hero {
-  padding: 36px 0 28px;
-}
+.mesh-hero { padding: 40px 0 32px; }
 
 .mesh-hero h1 {
-  margin: 0;
-  font-size: 34px;
-  font-weight: 650;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
 }
+
+.mesh-hero h1 span { color: var(--mesh-primary); }
 
 .mesh-hero .lead {
   max-width: 52rem;
-  margin-top: 14px;
+  margin-top: 16px;
   font-size: 18px;
   line-height: 1.55;
 }
@@ -223,67 +264,51 @@ p, figure { margin: 0; }
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 22px;
+  margin-top: 24px;
 }
 
-.mesh-button,
-.mesh-secondary-button {
+/* Buttons, as the interface's: bordered, and the main one filled. */
+.mesh-button {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  padding: 9px 16px;
-  border-radius: 6px;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 16px;
+  border: 1px solid var(--mesh-border-strong);
+  border-radius: var(--mesh-radius-sm);
+  background: var(--mesh-surface);
+  color: var(--mesh-text);
   font-size: 14px;
   font-weight: 500;
   white-space: nowrap;
 }
 
-.mesh-button {
+.mesh-button:hover { background: var(--mesh-surface-2); color: var(--mesh-text); text-decoration: none; }
+.mesh-button .ti { font-size: 16px; }
+
+.mesh-button.is-primary {
+  border-color: var(--mesh-primary);
   background: var(--mesh-primary);
-  border: 1px solid var(--mesh-primary);
   color: var(--mesh-on-primary);
+  font-weight: 600;
 }
 
-.mesh-button:hover {
-  background: var(--mesh-primary-dark);
+.mesh-button.is-primary:hover {
   border-color: var(--mesh-primary-dark);
+  background: var(--mesh-primary-dark);
   color: var(--mesh-on-primary);
-  text-decoration: none;
 }
 
-.mesh-secondary-button {
-  border: 1px solid var(--mesh-border);
-  background: var(--mesh-surface);
-  color: var(--mesh-text);
-}
+/* A section's heading, as the interface's data pages have. */
+.data-heading { margin: 44px 0 14px; }
+.data-heading h2 { font-size: 22px; font-weight: 650; line-height: 1.25; }
+.data-heading p { margin-top: 2px; color: var(--mesh-muted); font-size: 14px; }
 
-.mesh-secondary-button:hover {
-  background: var(--mesh-soft);
-  color: var(--mesh-text);
-  text-decoration: none;
-}
-
-/* A page heading, as the interface's data pages have. */
-.data-heading {
-  margin: 40px 0 14px;
-}
-
-.data-heading h2 {
-  margin: 0;
-  font-size: 24px;
-  font-weight: 650;
-}
-
-.data-heading p {
-  margin-top: 2px;
-  color: var(--mesh-muted);
-  font-size: 14px;
-}
-
-/* What Meshview does: the dashboard's metric cards, with words for numbers. */
+/* What Meshview does: the dashboard's figures, with words for numbers. */
 .mesh-features {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
 }
 
@@ -292,11 +317,10 @@ p, figure { margin: 0; }
   grid-template-columns: auto minmax(0, 1fr);
   column-gap: 14px;
   align-content: start;
-  padding: 16px 18px;
+  padding: 16px 20px;
   background: var(--mesh-surface);
   border: 1px solid var(--mesh-border);
-  border-radius: 9px;
-  box-shadow: 0 2px 4px #24324704;
+  border-radius: var(--mesh-radius);
 }
 
 .mesh-feature-icon {
@@ -304,28 +328,18 @@ p, figure { margin: 0; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--mesh-radius);
   background: var(--mesh-soft);
   color: var(--mesh-primary);
-  font-size: 22px;
+  font-size: 21px;
 }
 
-.mesh-feature h3 {
-  margin: 0;
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 1.35;
-}
+.mesh-feature h3 { font-size: 15px; font-weight: 650; line-height: 1.35; }
+.mesh-feature p { margin-top: 4px; font-size: 14px; color: var(--mesh-muted); }
 
-.mesh-feature p {
-  margin-top: 4px;
-  font-size: 14px;
-  color: var(--mesh-muted);
-}
-
-/* A card with a title, as the statistics page's charts are. */
+/* A card with a title, as the interface's are. */
 .card-section {
   display: flex;
   flex-direction: column;
@@ -333,7 +347,7 @@ p, figure { margin: 0; }
   padding: 16px 20px 20px;
   background: var(--mesh-surface);
   border: 1px solid var(--mesh-border);
-  border-radius: 9px;
+  border-radius: var(--mesh-radius);
 }
 
 .card-section + .card-section { margin-top: 12px; }
@@ -341,26 +355,20 @@ p, figure { margin: 0; }
 .card-head {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding-bottom: 8px;
+  gap: 8px;
+  padding-bottom: 10px;
   border-bottom: 1px solid var(--mesh-border);
 }
 
 .card-head .ti { color: var(--mesh-primary); font-size: 18px; }
-
-.section-header {
-  margin: 0;
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 1.35;
-}
+.section-header { font-size: 15px; font-weight: 650; line-height: 1.35; }
 
 .card-section img {
   display: block;
   width: 100%;
   height: auto;
   border: 1px solid var(--mesh-border);
-  border-radius: 6px;
+  border-radius: var(--mesh-radius-sm);
 }
 
 .card-section > p { font-size: 14px; color: var(--mesh-muted); }
@@ -379,8 +387,8 @@ pre {
   overflow-x: auto;
   padding: 12px 14px;
   border: 1px solid var(--mesh-border);
-  border-radius: 6px;
-  background: var(--mesh-page);
+  border-radius: var(--mesh-radius-sm);
+  background: var(--mesh-surface-2);
   font-size: 13px;
   line-height: 1.55;
 }
@@ -391,6 +399,7 @@ pre code { font-size: inherit; }
 
 .mesh-footer {
   border-top: 1px solid var(--mesh-border);
+  background: var(--mesh-surface);
   color: var(--mesh-muted);
   font-size: 13px;
 }
@@ -398,11 +407,16 @@ pre code { font-size: inherit; }
 .mesh-footer-inner {
   max-width: 1280px;
   margin: auto;
-  padding: 22px 28px;
-  text-align: center;
-  text-wrap: balance;
+  padding: 16px 28px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px 16px;
 }
 
+.mesh-footer a { display: inline-flex; align-items: center; gap: 6px; color: var(--mesh-muted); }
+.mesh-footer a:hover { color: var(--mesh-primary); text-decoration: none; }
 .mesh-footer .heart { color: #d93848; }
 
 /* Flags as pictures: emoji flags do not show on Windows. */
@@ -413,14 +427,22 @@ pre code { font-size: inherit; }
   border-radius: 1.5px;
 }
 
+@media (max-width: 1000px) {
+  .mesh-features { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 860px) {
+  .mesh-nav .wide { display: none; }
+}
+
 @media (max-width: 700px) {
   .mesh-header-inner { padding: 0 14px; gap: 12px; }
-  .mesh-nav { flex-wrap: nowrap; }
-  .mesh-nav .wide { display: none; }
   .mesh-content { padding: 12px 14px 32px; }
   .mesh-hero { padding-top: 24px; }
-  .mesh-hero h1 { font-size: 27px; }
+  .mesh-hero h1 { font-size: 28px; }
   .mesh-hero .lead { font-size: 16px; }
+  .mesh-actions .mesh-button { flex: 1 1 auto; }
+  .mesh-features { grid-template-columns: minmax(0, 1fr); }
   .card-section { padding: 12px 14px 14px; }
-  .mesh-footer-inner { padding: 18px 14px; }
+  .mesh-footer-inner { flex-direction: column; text-align: center; padding: 16px 14px; }
 }
