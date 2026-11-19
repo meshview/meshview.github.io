@@ -16,7 +16,8 @@ two accents, so that both can be seen: the English page the green, with
 follows the browser.
 
 The screenshots in `shots/` are WebP, 1600×900, from O Zulo's mesh, light, in
-English with the green accent and in Spanish with the blue, as their pages. `og.png` is the
+English with the green accent and in Spanish with the blue, as their pages;
+the `nodes-technical` pair, dark and in the technical style. `og.png` is the
 image a link to the site shows where it is pasted, 1200×630.
 `og-instance.png`, the same size, is the one a link to a Meshview instance
 shows when the instance has no `domain` configured to serve its own from: the
